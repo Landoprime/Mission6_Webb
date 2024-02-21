@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.JSInterop.Implementation;
 
 #nullable disable
 
@@ -28,7 +29,28 @@ namespace Mission6_LandonWebb.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Movies", x => x.MovieId);
+                    //table.ForeignKey(
+                    //    name: "FK_Movies_Categories_CategoryId1",
+                    //    column: x => x.CategoryId1,
+                    //    principalTable: "Categories",
+                    //    principalColumn: "CategoryId",
+                    //    onDelete: ReferentialAction.Cascade);
                 });
+            //migrationBuilder.InsertData(
+            //    table: "Categories",
+            //    columns: new[] { "CategoryId", "Category" },
+            //    values: new object[,]
+            //    {
+            //        { 1, "Miscellaneous" },
+            //        { 2, "Drama" },
+            //        { 3, "Television" },
+            //        { 4, "Horror/Suspense" },
+            //        { 5, "Comedy" },
+            //        { 6, "Family" },
+            //        { 7, "Action/Adventure" },
+            //        { 8, "VHS" }
+
+            //    });
         }
 
         /// <inheritdoc />

@@ -9,19 +9,24 @@
     .container {
         width: 50%;
         margin: auto;
+        padding: 20px;
+        background-color: #f5f5f5; /* Light gray background */
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     /* Form label styles */
     label {
-        display: block;
-        margin-top: 10px;
+        font-weight: bold;
+        margin-top: 15px;
     }
 
     /* Form input styles */
     input[type="text"],
     select {
-        width: 100%;
-        padding: 8px;
+        width: calc(100% - 16px);
+        padding: 10px;
         border: 1px solid #ccc;
         border-radius: 4px;
         box-sizing: border-box;
@@ -30,31 +35,48 @@
 
     /* Form submit button styles */
     input[type="submit"] {
-        background-color: #4CAF50;
+        background-color: #007bff;
         color: white;
-        padding: 10px 20px; 
+        padding: 12px 20px;
         border: none;
         border-radius: 4px;
         cursor: pointer;
-        margin-top: 10px;
+        margin-top: 20px;
     }
 
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #0056b3;
         }
+
+    /* Validation summary styles */
+    .validation-summary-errors {
+        margin-top: 20px;
+        color: #dc3545;
+    }
 </style>
 
 <div class="container">
     <h1>Movie Collection</h1>
-    <form asp-action="MovieForm" asp-controller="Home" method="post">
+    <form asp-action="Edit" asp-controller="Home" method="post">
+
+        <input type="hidden" asp-for="MovieId" />
+
         <label asp-for="Category">Category:</label>
-        <input asp-for="Category" class="form-control" />
+        <select asp-for="CategoryId" class="form-control">
+            <option value="">Select a category</option>
+            @foreach (var c in ViewBag.Categories)
+            {
+                <option value="@c.CategoryId">@c.CategoryName</option>
+            }
+        </select>
 
         <label asp-for="Title">Title:</label>
         <input asp-for="Title" class="form-control" />
 
         <label asp-for="Year">Year:</label>
-        <input asp-for="Year" class="form-control" />
+        <input asp-for="Year" class="form-control" type="number" min="1888" max="2024" />
+
+        
 
         <label asp-for="Director">Director:</label>
         <input asp-for="Director" class="form-control" />
@@ -77,12 +99,21 @@
         <label asp-for="LentTo">Lent to:</label>
         <input asp-for="LentTo" class="form-control" />
 
+        <label asp-for="CopiedToPlex">Copied to Plex:</label>
+        <select asp-for="CopiedToPlex" class="form-control">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+
         <label asp-for="Notes">Notes:</label>
         <input asp-for="Notes" class="form-control" />
 
+        <br />
+
         <button type="submit" class="btn btn-primary">Submit</button>
+
+        <div asp-validation-summary="All"></div>
     </form>
 </div>
 
-</div>
 

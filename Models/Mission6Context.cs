@@ -9,5 +9,7 @@ namespace Mission6_LandonWebb.Models
         } //Constructor
 
         public DbSet<Movie> Movies { get; set; } 
+        public DbSet<Category> Categories { get; set; }
+
     }
 }
